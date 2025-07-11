@@ -14,8 +14,7 @@ public class AuthorRepository {
         return new ArrayList<>(store.values());
     }
     public Optional<Author> findById(Integer id) {
-        return authorRepository.findByID(id).orElseThrow(() ->
-                )
+        return Optional.ofNullable(store.get(id));
     }
     public Author save(Author author) {
         if (author.getId() == null) {
@@ -23,5 +22,16 @@ public class AuthorRepository {
         }
         store.put(author.getId(), author);
         return author;
+    }
+    public Author update(Integer id, Author updatedAuthor) {
+        if (!store.containsKey(id)) {
+            throw new NoSuchElementException(id + "의 저자가 없습니다.");
+        }
+        updatedAuthor.setId(id);
+        store.put(id, updatedAuthor);
+        return updatedAuthor;
+    }
+    public void delete(Integer id) {
+        store.remove(id);
     }
 }
