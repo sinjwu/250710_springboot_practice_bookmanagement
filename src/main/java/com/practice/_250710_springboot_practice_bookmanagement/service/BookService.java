@@ -1,5 +1,6 @@
 package com.practice._250710_springboot_practice_bookmanagement.service;
 
+import com.practice._250710_springboot_practice_bookmanagement.model.Author;
 import com.practice._250710_springboot_practice_bookmanagement.model.Book;
 import com.practice._250710_springboot_practice_bookmanagement.repository.BookRepository;
 import lombok.RequiredArgsConstructor;
@@ -20,5 +21,11 @@ public class BookService {
     }
     public Book create(Book book) {
         return bookRepository.save(book);
+    }
+    public Book update(Integer id, Book book) {
+        return bookRepository.update(id, book);
+    }
+    public void delete(Integer id) {
+        bookRepository.delete(id);
     }
 }
